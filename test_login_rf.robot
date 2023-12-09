@@ -3,8 +3,8 @@ Library  SeleniumLibrary
 Documentation    Suite description #automated tests for scout website
 
 *** Variables ***
-${LOGIN URL}        https://scouts-test.futbolkolektyw.pl/pl
-${LOGIN URL EN}        https://scouts-test.futbolkolektyw.pl/en
+${LOGIN URL}        https://dareit.futbolkolektyw.pl/pl
+${LOGIN URL EN}        https://dareit.futbolkolektyw.pl/en
 ${BROWSER}        Chrome
 ${SIGNINBUTTON}        xpath=//*[@type='submit']
 ${EMAILINPUT}        xpath=//*[@id='login']
@@ -29,6 +29,8 @@ ${ALERT SUCCESS ADDING PLAYER}        xpath=//div[contains(@class,'toast--succes
 ${ALERT ERROR ADDING PLAYER}        xpath=//div[contains(@class,'toast--error')]
 ${CLEAR BUTTON}        xpath=//span[text()='Clear']/parent::button
 ${INPUT FIELDS}        xpath=//input[@value='']
+${PREVIOUS CLUB}        xpath=//*[@name="prevClub"]
+
 
 *** Test Cases ***
 Log in to the system
@@ -79,7 +81,8 @@ Test search player by surname
     Type in surname and press enter
     Click on the next searching page button
     Assert Searching Page
-#Do dokończenia (wyżej)
+
+    #Do dokończenia
 
 Add player with only required fields
     Open login page
@@ -91,6 +94,7 @@ Add player with only required fields
     Type in surname
     Type in date of birth
     Type in main position
+    Type in previous club
     Submit player
     Assert success alert
 
@@ -141,6 +145,8 @@ Type in date of birth
     Input Text        ${DATE OF BIRTH}          05.02.2000
 Type in main position
     Input Text        ${MAIN POSITION}         napastnik
+Type in previous club
+    Input Text        ${PREVIOUS CLUB}         Bayern
 Click on the submit button
     Click Element        ${SIGNINBUTTON} 
 Click on the dropdown list
